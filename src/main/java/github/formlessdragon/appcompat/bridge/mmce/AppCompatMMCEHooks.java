@@ -5,11 +5,11 @@ import ae2.core.definitions.AEItems;
 import hellfirepvp.modularmachinery.common.lib.ItemsMM;
 import net.minecraft.item.Item;
 
-public final class AppCompatInitHooks {
+public final class AppCompatMMCEHooks {
 
     private static boolean initialized;
 
-    private AppCompatInitHooks() {
+    private AppCompatMMCEHooks() {
     }
 
     public static synchronized void init() {

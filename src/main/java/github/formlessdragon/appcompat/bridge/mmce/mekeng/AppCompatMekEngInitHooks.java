@@ -1,6 +1,6 @@
 package github.formlessdragon.appcompat.bridge.mmce.mekeng;
 
-import github.formlessdragon.appcompat.bridge.mmce.AppCompatInitHooks;
+import github.formlessdragon.appcompat.bridge.mmce.AppCompatMMCEHooks;
 import hellfirepvp.modularmachinery.common.lib.ItemsMM;
 
 public final class AppCompatMekEngInitHooks {
@@ -18,8 +18,8 @@ public final class AppCompatMekEngInitHooks {
             return;
         }
         initialized = true;
-        AppCompatInitHooks.register(ItemsMM.meGasInputBus);
-        AppCompatInitHooks.register(ItemsMM.meGasOutputBus);
+        AppCompatMMCEHooks.register(ItemsMM.meGasInputBus);
+        AppCompatMMCEHooks.register(ItemsMM.meGasOutputBus);
         PatternProviderGasCacheExtension.register();
     }
 }

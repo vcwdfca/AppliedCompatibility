@@ -38,7 +38,7 @@ dependencies {
     modImplementation "curse.maven:mouse-tweaks-unofficial-461660:5876158"
 
     //ae2
-    def ae2Version = "1.0.3"
+    def ae2Version = "1.0.4"
     compileOnly("io.github.formlessdragon:AppliedEnergistics2-Supergiant:${ae2Version}:dev") {
         transitive = false
     }

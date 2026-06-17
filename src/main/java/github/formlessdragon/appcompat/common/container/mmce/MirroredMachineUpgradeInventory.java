@@ -3,7 +3,7 @@ package github.formlessdragon.appcompat.common.container.mmce;
 import ae2.api.inventories.InternalInventory;
 import ae2.api.upgrades.IUpgradeInventory;
 import ae2.api.upgrades.UpgradeInventories;
-import github.formlessdragon.appcompat.bridge.mmce.AppCompatInitHooks;
+import github.formlessdragon.appcompat.bridge.mmce.AppCompatMMCEHooks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,7 +16,7 @@ public class MirroredMachineUpgradeInventory implements IUpgradeInventory {
     private boolean syncing;
 
     public MirroredMachineUpgradeInventory(final Item machineItem, final int slots, final InternalInventory backing) {
-        AppCompatInitHooks.init();
+        AppCompatMMCEHooks.init();
         this.backing = backing;
         this.standard = UpgradeInventories.forMachine(machineItem, slots, this::pushToBacking);
         this.pullFromBacking();
