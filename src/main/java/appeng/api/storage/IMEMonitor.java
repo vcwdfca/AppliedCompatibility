@@ -1,4 +1,6 @@
 package appeng.api.storage;
 
-public interface IMEMonitor extends IMEInventory {
+import appeng.api.storage.data.IAEStack;
+
+public interface IMEMonitor<T extends IAEStack<T>> extends IMEInventory<T> {
 }

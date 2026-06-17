@@ -1,7 +1,7 @@
 package com.mekeng.github.common.me.data.impl;
 
-import ae2.api.config.FuzzyMode;
 import appeng.api.AEApi;
+import appeng.api.config.FuzzyMode;
 import appeng.api.storage.IStorageChannel;
 import com.mekeng.github.common.me.data.IAEGasStack;
 import com.mekeng.github.common.me.storage.IGasStorageChannel;
@@ -202,7 +202,7 @@ public final class AEGasStack implements IAEGasStack, Comparable<AEGasStack> {
     }
 
     @Override
-    public IStorageChannel getChannel() {
+    public IStorageChannel<IAEGasStack> getChannel() {
         return AEApi.instance().storage().getStorageChannel(IGasStorageChannel.class);
     }
 

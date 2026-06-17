@@ -1,6 +1,7 @@
 package github.formlessdragon.appcompat;
 
-import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -14,6 +15,10 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
 
     @Override
     public void onLoad(final String mixinPackage) {
+        if ("github.formlessdragon.appcompat.mixins".equals(mixinPackage)) {
+            ConfigManager.sync(Tags.MOD_ID, Config.Type.INSTANCE);
+            AppCompatMixinDecisions.refreshFromEnvironment();
+        }
     }
 
     @Override
@@ -28,27 +33,7 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
             mixinName = mixinName.substring(MIXIN_ROOT.length());
         }
 
-        int split = mixinName.indexOf('.');
-        if (split < 0) {
-            return true;
-        }
-
-        String group = mixinName.substring(0, split);
-
-        return switch (group) {
-            case "mmce" -> {
-                if (Loader.isModLoaded("modularmachinery")) {
-                    if (mixinName.startsWith("mmce.top")) {
-                        yield Loader.isModLoaded("theoneprobe");
-                    } else if (mixinName.startsWith("mmce.mekeng")) {
-                        yield Loader.isModLoaded("mekeng");
-                    }
-                    yield true;
-                }
-                yield false;
-            }
-            default -> true;
-        };
+        return AppCompatMixinDecisions.shouldApply(mixinName);
     }
 
     @Override

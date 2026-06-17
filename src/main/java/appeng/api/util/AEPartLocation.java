@@ -12,6 +12,28 @@ public enum AEPartLocation {
     INTERNAL;
 
     public static AEPartLocation fromFacing(final EnumFacing side) {
-        return INTERNAL;
+        if (side == null) {
+            return INTERNAL;
+        }
+        return switch (side) {
+            case DOWN -> DOWN;
+            case UP -> UP;
+            case NORTH -> NORTH;
+            case SOUTH -> SOUTH;
+            case WEST -> WEST;
+            case EAST -> EAST;
+        };
+    }
+
+    public EnumFacing getFacing() {
+        return switch (this) {
+            case DOWN -> EnumFacing.DOWN;
+            case UP -> EnumFacing.UP;
+            case NORTH -> EnumFacing.NORTH;
+            case SOUTH -> EnumFacing.SOUTH;
+            case WEST -> EnumFacing.WEST;
+            case EAST -> EnumFacing.EAST;
+            case INTERNAL -> null;
+        };
     }
 }

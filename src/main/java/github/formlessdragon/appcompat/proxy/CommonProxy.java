@@ -2,6 +2,7 @@ package github.formlessdragon.appcompat.proxy;
 
 import github.formlessdragon.appcompat.bridge.mmce.AppCompatInitHooks;
 import github.formlessdragon.appcompat.bridge.mmce.mekeng.AppCompatMekEngInitHooks;
+import github.formlessdragon.appcompat.bridge.gtceu.GtceuMekanismRecipeBridge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -11,6 +12,7 @@ public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
         AppCompatInitHooks.init();
+        GtceuMekanismRecipeBridge.init();
         initMekEng();
     }
 

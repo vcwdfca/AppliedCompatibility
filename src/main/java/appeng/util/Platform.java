@@ -3,6 +3,7 @@ package appeng.util;
 import appeng.api.networking.energy.IEnergySource;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.storage.IMEInventory;
+import appeng.api.config.Actionable;
 import appeng.api.storage.data.IAEStack;
 import appeng.api.util.AEPartLocation;
 import appeng.core.sync.GuiBridge;
@@ -28,10 +29,10 @@ public class Platform {
     }
 
     public static IAEStack poweredExtraction(final IEnergySource energy, final IMEInventory cell, final IAEStack request, final IActionSource src) {
-        return null;
+        return cell.extractItems(request, Actionable.MODULATE, src);
     }
 
     public static IAEStack poweredInsert(final IEnergySource energy, final IMEInventory cell, final IAEStack input, final IActionSource src) {
-        return null;
+        return cell.injectItems(input, Actionable.MODULATE, src);
     }
 }

@@ -85,6 +85,20 @@ configurations {
 
 String remapTaskName = propertyBool('enable_shadow') ? "remapShadowJar" : "remapJar"
 
+def gtceuMappingsJar = layout.projectDirectory.file(".gradle/unimined/local/mappings/srg2mcp.jar")
+def gtceuMappingsSrg = layout.projectDirectory.file(".gradle/unimined/local/mappings/srg2mcp.tsrg")
+def gtceuMappingsCsvDir = layout.buildDirectory.dir("gtceu/mcp-csv")
+def prepareGtceuDevMappings = tasks.register("prepareGtceuDevMappings", Copy) {
+    from({ zipTree(gtceuMappingsJar.asFile) }) {
+        include "fields.csv", "methods.csv"
+    }
+    into(gtceuMappingsCsvDir)
+}
+
+tasks.matching { it.name == 'runClient' || it.name == 'runServer' }.configureEach {
+    dependsOn(prepareGtceuDevMappings)
+}
+
 unimined.minecraft {
     version "1.12.2"
 
@@ -100,6 +114,8 @@ unimined.minecraft {
         runs.auth.username = minecraft_username
         runs.all {
             systemProperty("crl.dev.mixin", "${mod_id}.default.mixin.json,${mod_id}.mod.mixin.json")
+            systemProperty("net.minecraftforge.gradle.GradleStart.srg.notch-srg", gtceuMappingsSrg.asFile.absolutePath)
+            systemProperty("net.minecraftforge.gradle.GradleStart.csvDir", gtceuMappingsCsvDir.get().asFile.absolutePath)
             def extraArgs = propertyString('extra_jvm_args')
             if (extraArgs != null && !extraArgs.trim().isEmpty()) {
                 jvmArgs += extraArgs.split { "\\s+" }.toList()

@@ -1,9 +1,11 @@
 package appeng.api.networking.storage;
 
+import appeng.api.networking.IGridCache;
 import appeng.api.storage.IMEMonitor;
 import appeng.api.storage.IStorageChannel;
+import appeng.api.storage.data.IAEStack;
 
-public interface IStorageGrid {
+public interface IStorageGrid extends IGridCache {
 
-    IMEMonitor getInventory(IStorageChannel channel);
+    <T extends IAEStack<T>> IMEMonitor<T> getInventory(IStorageChannel<T> channel);
 }

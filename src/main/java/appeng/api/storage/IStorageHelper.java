@@ -2,5 +2,5 @@ package appeng.api.storage;
 
 public interface IStorageHelper {
 
-    IStorageChannel getStorageChannel(Class<?> channel);
+    <T extends appeng.api.storage.data.IAEStack<T>> IStorageChannel<T> getStorageChannel(Class<?> channel);
 }

@@ -21,7 +21,9 @@
     "mmce.MixinMEItemInputBus",
     "mmce.MixinMEItemOutputBus",
     "mmce.MixinMEMachineComponent",
-    "mmce.MixinMEPatternProvider"
+    "mmce.MixinMEPatternProvider",
+    "gtceu.MixinMods",
+    "gtceu.MixinMetaTileEntityHolder"
   ],
   "client": [
     "mmce.MixinClientProxy",

@@ -1,6 +1,6 @@
 package com.mekeng.github.common.me.data;
 
-import ae2.api.config.FuzzyMode;
+import appeng.api.config.FuzzyMode;
 import appeng.api.storage.IStorageChannel;
 import appeng.api.storage.data.IAEStack;
 import io.netty.buffer.ByteBuf;
@@ -11,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.io.IOException;
 
-public interface IAEGasStack extends IAEStack {
+public interface IAEGasStack extends IAEStack<IAEGasStack> {
 
     @Override
     IAEGasStack copy();
@@ -58,7 +58,7 @@ public interface IAEGasStack extends IAEStack {
 
     boolean isFluid();
 
-    IStorageChannel getChannel();
+    IStorageChannel<IAEGasStack> getChannel();
 
     ItemStack asItemStackRepresentation();
 }

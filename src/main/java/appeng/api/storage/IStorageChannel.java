@@ -1,4 +1,6 @@
 package appeng.api.storage;
 
-public interface IStorageChannel {
+import appeng.api.storage.data.IAEStack;
+
+public interface IStorageChannel<T extends IAEStack<T>> {
 }

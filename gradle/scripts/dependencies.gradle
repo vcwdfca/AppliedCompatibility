@@ -53,8 +53,8 @@ dependencies {
     compileOnly "io.github.formlessdragon:mekeng:${mekaeVersion}:dev"
     modRuntimeOnly "io.github.formlessdragon:mekeng:${mekaeVersion}:dev"
 
-    /*modCompileOnly("curse.maven:gregtechceu-557242:5519022")
-    modImplementation("curse.maven:codechicken-lib-1-8-242818:2779848")*/
+    modImplementation("maven.modrinth:codechicken-lib-cre:3.3.5")
+    modImplementation("curse.maven:gregtechceu-557242:5519022")
     modRuntimeOnly 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.711'
     modImplementation "curse.maven:the-one-probe-245211:2667280"
     modImplementation "curse.maven:modularmachinery-community-edition-817377:7372951"
