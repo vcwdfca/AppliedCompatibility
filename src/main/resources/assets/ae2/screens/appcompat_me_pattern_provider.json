@@ -1,0 +1,70 @@
+{
+  "$schema": "schema.json",
+  "includes": [
+    "common/common.json"
+  ],
+  "background": {
+    "texture": "modularmachinery:textures/gui/mepatternprovider.png",
+    "srcRect": [0, 0, 256, 196]
+  },
+  "slots": {
+    "ENCODED_PATTERN": {
+      "left": 8,
+      "top": 28,
+      "grid": "BREAK_AFTER_9COLS"
+    },
+    "STORAGE": {
+      "left": 181,
+      "top": 172,
+      "grid": "HORIZONTAL"
+    },
+    "PLAYER_INVENTORY": {
+      "left": 8,
+      "top": 114,
+      "grid": "BREAK_AFTER_9COLS"
+    },
+    "PLAYER_HOTBAR": {
+      "left": 8,
+      "top": 172,
+      "grid": "HORIZONTAL"
+    }
+  },
+  "text": {
+    "dialog_title": {
+      "text": {
+        "translate": "gui.mepatternprovider.title"
+      },
+      "position": {
+        "left": 7,
+        "top": 11
+      }
+    },
+    "cached": {
+      "text": {
+        "translate": "gui.mepatternprovider.cached"
+      },
+      "position": {
+        "left": 180,
+        "top": 11
+      }
+    },
+    "inventory": {
+      "text": {
+        "translate": "gui.mepatternprovider.inventory"
+      },
+      "position": {
+        "left": 7,
+        "top": 101
+      }
+    },
+    "single_inv": {
+      "text": {
+        "translate": "gui.mepatternprovider.single_inv"
+      },
+      "position": {
+        "left": 180,
+        "top": 158
+      }
+    }
+  }
+}

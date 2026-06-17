@@ -9,12 +9,14 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION)
+@Mod(modid = "appliedenergistics2", name = Tags.MOD_NAME, version = Tags.VERSION, acceptedMinecraftVersions = "[1.12.2]",
+    dependencies = "required-after:ae2@[1.0.3,);after:mekeng;after:mekanism;"
+)
 public class AppliedCompatibility {
 
     public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
 
-    @SidedProxy(modId = Tags.MOD_ID, clientSide = "github.formlessdragon.appcompat.proxy.ClientProxy", serverSide = "github.formlessdragon.appcompat.proxy.CommonProxy")
+    @SidedProxy(clientSide = "github.formlessdragon.appcompat.proxy.ClientProxy", serverSide = "github.formlessdragon.appcompat.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler

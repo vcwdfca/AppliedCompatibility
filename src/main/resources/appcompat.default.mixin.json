@@ -1,6 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "github.formlessdragon.appcompat.mixins",
-  "compatibilityLevel": "JAVA_8"
+  "package": "github.formlessdragon.appcompat.mixins.mc",
+  "compatibilityLevel": "JAVA_25",
+  "target": "@env(DEFAULT)"
 }

@@ -2,5 +2,29 @@
   "required": true,
   "minVersion": "0.8",
   "package": "github.formlessdragon.appcompat.mixins",
-  "compatibilityLevel": "JAVA_8"
+  "compatibilityLevel": "JAVA_25",
+  "plugin" : "github.formlessdragon.appcompat.MixinConfigPlugin",
+  "target": "@env(MOD)",
+  "mixinextras": {
+    "minVersion": "0.5.3"
+  },
+  "mixins": [
+    "mmce.MixinCommonProxy",
+    "mmce.MixinItemBlockMEMachineComponent",
+    "mmce.top.MixinModIntegrationTOP",
+    "mmce.top.MixinMachineryHatchInfoProvider",
+    "mmce.MixinMEFluidInputBus",
+    "mmce.MixinMEFluidOutputBus",
+    "mmce.mekeng.MixinCommonProxy",
+    "mmce.mekeng.MixinMEGasInputBus",
+    "mmce.mekeng.MixinMEGasOutputBus",
+    "mmce.MixinMEItemInputBus",
+    "mmce.MixinMEItemOutputBus",
+    "mmce.MixinMEMachineComponent",
+    "mmce.MixinMEPatternProvider"
+  ],
+  "client": [
+    "mmce.MixinClientProxy",
+    "mmce.mekeng.MixinClientProxy"
+  ]
 }

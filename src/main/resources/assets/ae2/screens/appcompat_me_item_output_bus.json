@@ -1,0 +1,55 @@
+{
+  "$schema": "schema.json",
+  "includes": [
+    "common/common.json"
+  ],
+  "background": {
+    "texture": "ae2:textures/guis/skychest.png",
+    "srcRect": [0, 0, 176, 195]
+  },
+  "slots": {
+    "STORAGE": {
+      "left": 8,
+      "top": 18,
+      "grid": "BREAK_AFTER_9COLS"
+    },
+    "PLAYER_INVENTORY": {
+      "left": 8,
+      "top": 103,
+      "grid": "BREAK_AFTER_9COLS"
+    },
+    "PLAYER_HOTBAR": {
+      "left": 8,
+      "top": 161,
+      "grid": "HORIZONTAL"
+    }
+  },
+  "widgets": {
+    "stackSize": {
+      "left": -18,
+      "top": 8,
+      "width": 16,
+      "height": 16
+    }
+  },
+  "text": {
+    "dialog_title": {
+      "text": {
+        "translate": "gui.meitemoutputbus.title"
+      },
+      "position": {
+        "left": 8,
+        "top": 8
+      }
+    },
+    "inventory": {
+      "text": {
+        "translate": "container.inventory"
+      },
+      "position": {
+        "left": 8,
+        "top": 91
+      }
+    }
+  }
+}

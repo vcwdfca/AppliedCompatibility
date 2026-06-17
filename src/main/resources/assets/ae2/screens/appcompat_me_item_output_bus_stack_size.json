@@ -1,0 +1,21 @@
+{
+  "$schema": "schema.json",
+  "includes": [
+    "common/common.json"
+  ],
+  "background": {
+    "texture": "modularmachinery:textures/gui/stacksize.png",
+    "srcRect": [0, 0, 176, 105]
+  },
+  "text": {
+    "dialog_title": {
+      "text": {
+        "translate": "gui.meitembus.stack_size.name"
+      },
+      "position": {
+        "left": 8,
+        "top": 6
+      }
+    }
+  }
+}

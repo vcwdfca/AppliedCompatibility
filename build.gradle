@@ -6,7 +6,7 @@ plugins {
     id 'maven-publish'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.4.1'
     id 'com.gradleup.shadow' version '9.4.0'
-    id 'xyz.wagyourtail.unimined' version '1.4.18-kappa'
+    id 'xyz.wagyourtail.unimined' version '1.4.23-kappa'
     id 'com.diffplug.spotless' version '8.4.0'
 }
 
@@ -78,6 +78,7 @@ configurations {
     implementation.extendsFrom(contain)
     modCompileOnly
     compileOnly.extendsFrom(modCompileOnly)
+    testCompileOnly.extendsFrom(compileOnly)
     modRuntimeOnly
     runtimeOnly.extendsFrom(modRuntimeOnly)
 }
@@ -146,6 +147,7 @@ dependencies {
     if (propertyBool('enable_junit_testing')) {
         testImplementation 'org.junit.jupiter:junit-jupiter:6.0.3'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+        testRuntimeOnly 'com.google.code.gson:gson:2.10.1'
     }
     compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
 }
@@ -309,10 +311,13 @@ idea {
 }
 
 compileTestJava {
+    classpath += compileJava.classpath
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_25
 }
 
 test {
+    classpath += compileJava.classpath
+    classpath = configurations.testRuntimeClasspath.filter { it.name == 'gson-2.10.1.jar' } + classpath
     useJUnitPlatform()
     javaLauncher.set(javaToolchains.launcherFor {
         languageVersion = JavaLanguageVersion.of(25)
