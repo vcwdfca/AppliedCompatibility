@@ -1,5 +1,6 @@
 package github.formlessdragon.appcompat.proxy;
 
+import github.formlessdragon.appcompat.AppCompatConfig;
 import github.formlessdragon.appcompat.bridge.mmce.AppCompatMMCEHooks;
 import github.formlessdragon.appcompat.bridge.mmce.mekeng.AppCompatMekEngInitHooks;
 import github.formlessdragon.appcompat.bridge.gtceu.GtceuMekanismRecipeBridge;
@@ -16,11 +17,11 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-        if (mmceLoaded) AppCompatMMCEHooks.init();
-        if (gtceuLoaded) GtceuMekanismRecipeBridge.init();
-        if (mmceLoaded && mekengLoaded) {
-            AppCompatMekEngInitHooks.init();
+        if (AppCompatConfig.enableMMCE) {
+            if (mmceLoaded) AppCompatMMCEHooks.init();
+            if (mmceLoaded && mekengLoaded) AppCompatMekEngInitHooks.init();
         }
+        if (AppCompatConfig.enableGTCEu && gtceuLoaded) GtceuMekanismRecipeBridge.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

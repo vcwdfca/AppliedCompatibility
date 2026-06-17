@@ -5,15 +5,7 @@ import net.minecraftforge.common.config.Config;
 @Config(modid = Tags.MOD_ID)
 public final class AppCompatConfig {
 
-    public static Mixin mixin = new Mixin();
+    public static boolean enableMMCE = true;
 
-    private AppCompatConfig() {
-    }
-
-    public static final class Mixin {
-
-        public boolean enableMMCE = true;
-
-        public boolean enableGTCEu = true;
-    }
+    public static boolean enableGTCEu = true;
 }
