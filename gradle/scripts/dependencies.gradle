@@ -19,8 +19,12 @@ repositories {
         name = "ModMaven"
         url  = uri("https://modmaven.dev/")
     }
+    maven {
+        url = "https://maven.crystaelix.com/releases/"
+    }
     mavenCentral()
     mavenLocal()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -30,31 +34,27 @@ dependencies {
     }
 
     // HEI
-    def heiVersion = "4.31.2"
-    compileOnly "mezz:jei:${heiVersion}"
-    modRuntimeOnly "mezz:jei:${heiVersion}"
+    modImplementation "mezz:jei:4.31.2"
 
     // mouse tweaks
     modImplementation "curse.maven:mouse-tweaks-unofficial-461660:5876158"
 
     //ae2
-    def ae2Version = "1.0.4"
-    compileOnly("io.github.formlessdragon:AppliedEnergistics2-Supergiant:${ae2Version}:dev") {
-        transitive = false
-    }
-    modRuntimeOnly("io.github.formlessdragon:AppliedEnergistics2-Supergiant:${ae2Version}:dev") {
-        transitive = false
-    }
-
-    modImplementation "curse.maven:mekanism-268560:2835175"
+    modImplementation("com.github.FormlessDragon:Applied-Energistics-2-Supergiant:v1.0.5:dev")
 
     //mekeng
-    def mekaeVersion = "1.0.1"
-    compileOnly "io.github.formlessdragon:mekeng:${mekaeVersion}:dev"
-    modRuntimeOnly "io.github.formlessdragon:mekeng:${mekaeVersion}:dev"
+    modImplementation "curse.maven:mekanism-268560:2835175"
+    modImplementation "com.github.FormlessDragon:Applied-Mekanistics:v1.1.0:dev"
 
+    //packagedauto
+    modImplementation "thelm.packagedauto:PackagedAuto-1.12.2:1.0.24.73"
+    modImplementation "thelm.packagingprovider:PackagingProvider-1.12.2:1.0.0.2"
+
+    //gtceu
     modImplementation("maven.modrinth:codechicken-lib-cre:3.3.5")
     modImplementation("curse.maven:gregtechceu-557242:5519022")
+
+    //mmce
     modRuntimeOnly 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.711'
     modImplementation "curse.maven:the-one-probe-245211:2667280"
     modImplementation "curse.maven:modularmachinery-community-edition-817377:7372951"
