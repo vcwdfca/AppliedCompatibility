@@ -3,6 +3,7 @@ package appeng.fluids.util;
 import appeng.api.config.FuzzyMode;
 import appeng.api.storage.data.IAEFluidStack;
 import appeng.api.storage.data.IItemList;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -81,7 +82,7 @@ public class FluidList implements IItemList<IAEFluidStack> {
     }
 
     @Override
-    public Iterator<IAEFluidStack> iterator() {
+    public @NonNull Iterator<IAEFluidStack> iterator() {
         return this.records.values().iterator();
     }
 
@@ -89,6 +90,6 @@ public class FluidList implements IItemList<IAEFluidStack> {
         if (option == null) {
             throw new IllegalArgumentException("Cannot add a null fluid stack");
         }
-        return this.records.computeIfAbsent(option, stack -> stack.empty());
+        return this.records.computeIfAbsent(option, IAEFluidStack::empty);
     }
 }

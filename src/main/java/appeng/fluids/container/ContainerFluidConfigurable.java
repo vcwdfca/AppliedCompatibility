@@ -15,14 +15,6 @@ public class ContainerFluidConfigurable extends ContainerUpgradeable implements 
     }
 
     @Override
-    public void addListener(final IContainerListener listener) {
-    }
-
-    @Override
-    public void detectAndSendChanges() {
-    }
-
-    @Override
     public void receiveFluidSlots(final Map<Integer, IAEFluidStack> fluids) {
     }
 }

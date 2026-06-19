@@ -61,37 +61,31 @@ public final class ApiMaterials implements IMaterials {
         return this.purifiedNetherQuartzCrystal;
     }
 
-    private static final class RegistryItemDefinition implements IItemDefinition {
-
-        private final String id;
-
-        private RegistryItemDefinition(final String id) {
-            this.id = id;
-        }
+    private record RegistryItemDefinition(String id) implements IItemDefinition {
 
         @Override
-        public String identifier() {
-            return this.id;
-        }
-
-        @Override
-        public Optional<Item> maybeItem() {
-            final Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(this.id));
-            if (item == null) {
-                AELog.debug("Unable to resolve AE item definition {}", this.id);
-                return Optional.empty();
+            public String identifier() {
+                return this.id;
             }
-            return Optional.of(item);
-        }
 
-        @Override
-        public Optional<ItemStack> maybeStack(final int stackSize) {
-            return this.maybeItem().map(item -> new ItemStack(item, stackSize));
-        }
+            @Override
+            public Optional<Item> maybeItem() {
+                final Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(this.id));
+                if (item == null) {
+                    AELog.debug("Unable to resolve AE item definition {}", this.id);
+                    return Optional.empty();
+                }
+                return Optional.of(item);
+            }
 
-        @Override
-        public boolean isEnabled() {
-            return this.maybeItem().isPresent();
+            @Override
+            public Optional<ItemStack> maybeStack(final int stackSize) {
+                return this.maybeItem().map(item -> new ItemStack(item, stackSize));
+            }
+
+            @Override
+            public boolean isEnabled() {
+                return this.maybeItem().isPresent();
+            }
         }
-    }
 }

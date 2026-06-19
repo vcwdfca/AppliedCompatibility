@@ -22,4 +22,9 @@ public final class GtceuEnergyGridAdapter implements IEnergyGrid {
     public double extractAEPower(final double amount, final Actionable mode) {
         return this.energy.extractAEPower(amount, GtceuAeKeyBridge.toNewActionable(mode), PowerMultiplier.CONFIG);
     }
+
+    @Override
+    public double extractAEPower(final double amount, final Actionable mode, final appeng.api.config.PowerMultiplier multiplier) {
+        return this.energy.extractAEPower(amount, GtceuAeKeyBridge.toNewActionable(mode), PowerMultiplier.CONFIG);
+    }
 }

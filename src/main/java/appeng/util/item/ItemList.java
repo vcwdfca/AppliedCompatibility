@@ -3,6 +3,7 @@ package appeng.util.item;
 import appeng.api.config.FuzzyMode;
 import appeng.api.storage.data.IAEItemStack;
 import appeng.api.storage.data.IItemList;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -81,7 +82,7 @@ public class ItemList implements IItemList<IAEItemStack> {
     }
 
     @Override
-    public Iterator<IAEItemStack> iterator() {
+    public @NonNull Iterator<IAEItemStack> iterator() {
         return this.records.values().iterator();
     }
 
@@ -89,6 +90,6 @@ public class ItemList implements IItemList<IAEItemStack> {
         if (option == null) {
             throw new IllegalArgumentException("Cannot add a null item stack");
         }
-        return this.records.computeIfAbsent(option, stack -> stack.empty());
+        return this.records.computeIfAbsent(option, IAEItemStack::empty);
     }
 }

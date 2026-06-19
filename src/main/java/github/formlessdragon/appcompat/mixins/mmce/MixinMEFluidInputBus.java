@@ -57,7 +57,6 @@ public abstract class MixinMEFluidInputBus extends MEFluidBus implements IGridTi
             return TickRateModulation.SLOWER;
         }
 
-        final IActionHost host = hostTile;
         final IAEFluidTank config = getConfig();
         final ReadWriteLock rwLock = tanks.getRWLock();
         try {
@@ -75,13 +74,13 @@ public abstract class MixinMEFluidInputBus extends MEFluidBus implements IGridTi
                     if (invStack == null) {
                         continue;
                     }
-                    tanks.setFluidInSlot(slot, AppCompatFluidBridge.insert(grid, host, invStack));
+                    tanks.setFluidInSlot(slot, AppCompatFluidBridge.insert(grid, hostTile, invStack));
                     continue;
                 }
 
                 if (!cfgStack.equals(invStack)) {
                     if (invStack != null) {
-                        final IAEFluidStack stack = AppCompatFluidBridge.insert(grid, host, invStack);
+                        final IAEFluidStack stack = AppCompatFluidBridge.insert(grid, hostTile, invStack);
                         if (stack != null) {
                             tanks.setFluidInSlot(slot, stack);
                             continue;
@@ -89,7 +88,7 @@ public abstract class MixinMEFluidInputBus extends MEFluidBus implements IGridTi
                     }
                     final IAEFluidStack request = cfgStack.copy();
                     request.setStackSize(capacity);
-                    final IAEFluidStack stack = AppCompatFluidBridge.extract(grid, host, request);
+                    final IAEFluidStack stack = AppCompatFluidBridge.extract(grid, hostTile, request);
                     tanks.setFluidInSlot(slot, stack);
                     if (stack != null) {
                         successAtLeastOnce = true;
@@ -105,7 +104,7 @@ public abstract class MixinMEFluidInputBus extends MEFluidBus implements IGridTi
                     final long countToReceive = capacity - invStack.getStackSize();
                     final IAEFluidStack request = invStack.copy();
                     request.setStackSize(countToReceive);
-                    final IAEFluidStack stack = AppCompatFluidBridge.extract(grid, host, request);
+                    final IAEFluidStack stack = AppCompatFluidBridge.extract(grid, hostTile, request);
                     if (stack != null) {
                         final IAEFluidStack updated = invStack.copy();
                         updated.setStackSize(invStack.getStackSize() + stack.getStackSize());
@@ -118,7 +117,7 @@ public abstract class MixinMEFluidInputBus extends MEFluidBus implements IGridTi
                 final long countToExtract = invStack.getStackSize() - capacity;
                 final IAEFluidStack request = invStack.copy();
                 request.setStackSize(countToExtract);
-                final IAEFluidStack stack = AppCompatFluidBridge.insert(grid, host, request);
+                final IAEFluidStack stack = AppCompatFluidBridge.insert(grid, hostTile, request);
                 final IAEFluidStack updated = invStack.copy();
                 if (stack == null) {
                     updated.setStackSize(invStack.getStackSize() - countToExtract);

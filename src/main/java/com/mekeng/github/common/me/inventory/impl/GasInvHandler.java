@@ -7,6 +7,7 @@ import mekanism.api.gas.GasStack;
 import mekanism.api.gas.GasTank;
 import mekanism.api.gas.GasTankInfo;
 import net.minecraft.util.EnumFacing;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -120,7 +121,7 @@ public class GasInvHandler implements IExtendedGasHandler {
     }
 
     @Override
-    public GasTankInfo[] getTankInfo() {
+    public GasTankInfo @NonNull [] getTankInfo() {
         return this.inventory.getTanks();
     }
 

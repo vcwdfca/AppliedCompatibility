@@ -12,11 +12,9 @@ import net.minecraftforge.items.IItemHandler;
 
 public class DualityInterface {
 
-    private final IInterfaceHost iHost;
     private AppEngInternalInventory patterns;
 
     public DualityInterface(final AENetworkProxy networkProxy, final IInterfaceHost ih) {
-        this.iHost = ih;
     }
 
     public int getInstalledUpgrades(final Upgrades u) {

@@ -43,19 +43,19 @@ dependencies {
     modImplementation("com.github.FormlessDragon:Applied-Energistics-2-Supergiant:v1.0.5:dev")
 
     //mekeng
-    modImplementation "curse.maven:mekanism-268560:2835175"
-    modImplementation "com.github.FormlessDragon:Applied-Mekanistics:v1.1.0:dev"
+    modCompileOnly "curse.maven:mekanism-268560:2835175"
+    modCompileOnly "com.github.FormlessDragon:Applied-Mekanistics:v1.1.0:dev"
 
     //packagedauto
     modImplementation "thelm.packagedauto:PackagedAuto-1.12.2:1.0.24.73"
     modImplementation "thelm.packagingprovider:PackagingProvider-1.12.2:1.0.0.2"
 
     //gtceu
-    modImplementation("maven.modrinth:codechicken-lib-cre:3.3.5")
-    modImplementation("curse.maven:gregtechceu-557242:5519022")
+    modCompileOnly("maven.modrinth:codechicken-lib-cre:3.3.5")
+    modCompileOnly("curse.maven:gregtechceu-557242:5519022")
 
     //mmce
-    modRuntimeOnly 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.711'
+    //modRuntimeOnly 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.711'
     modImplementation "curse.maven:the-one-probe-245211:2667280"
-    modImplementation "curse.maven:modularmachinery-community-edition-817377:7372951"
+    modCompileOnly "curse.maven:modularmachinery-community-edition-817377:7372951"
 }

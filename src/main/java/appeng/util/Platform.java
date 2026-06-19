@@ -28,11 +28,23 @@ public class Platform {
     public static void openGUI(final EntityPlayer p, final TileEntity tile, final AEPartLocation side, final GuiBridge type) {
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public static IAEStack poweredExtraction(final IEnergySource energy, final IMEInventory cell, final IAEStack request, final IActionSource src) {
         return cell.extractItems(request, Actionable.MODULATE, src);
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public static IAEStack poweredInsert(final IEnergySource energy, final IMEInventory cell, final IAEStack input, final IActionSource src) {
         return cell.injectItems(input, Actionable.MODULATE, src);
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static IAEStack poweredInsert(final IEnergySource energy, final IMEInventory cell, final IAEStack input, final IActionSource src, final Actionable mode) {
+        return cell.injectItems(input, mode, src);
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static IAEStack poweredExtraction(final IEnergySource energy, final IMEInventory cell, final IAEStack request, final IActionSource src, final Actionable mode) {
+        return cell.extractItems(request, mode, src);
     }
 }

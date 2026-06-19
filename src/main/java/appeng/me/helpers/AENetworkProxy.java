@@ -139,12 +139,11 @@ public class AENetworkProxy {
 
     private ae2.api.networking.GridFlags toNewFlag(final GridFlags flag) {
         return switch (flag) {
-            case REQUIRE_CHANNEL -> ae2.api.networking.GridFlags.REQUIRE_CHANNEL;
+            case REQUIRE_CHANNEL, REQUIRE_CHANNEL_POWER -> ae2.api.networking.GridFlags.REQUIRE_CHANNEL;
             case COMPRESSED_CHANNEL -> ae2.api.networking.GridFlags.COMPRESSED_CHANNEL;
             case CANNOT_CARRY -> ae2.api.networking.GridFlags.CANNOT_CARRY;
             case DENSE_CAPACITY -> ae2.api.networking.GridFlags.DENSE_CAPACITY;
             case MULTIBLOCK -> ae2.api.networking.GridFlags.MULTIBLOCK;
-            case REQUIRE_CHANNEL_POWER -> ae2.api.networking.GridFlags.REQUIRE_CHANNEL;
         };
     }
 }

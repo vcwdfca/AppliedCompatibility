@@ -11,14 +11,6 @@ public class ContainerUpgradeable extends AEBaseContainer {
         super(ip, te);
     }
 
-    @Override
-    public void addListener(final IContainerListener listener) {
-    }
-
-    @Override
-    public void detectAndSendChanges() {
-    }
-
     public void onUpdate(final String field, final Object oldValue, final Object newValue) {
     }
 }

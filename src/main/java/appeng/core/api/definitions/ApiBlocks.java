@@ -32,47 +32,41 @@ public final class ApiBlocks implements IBlocks {
         return this.fluixBlock;
     }
 
-    private static final class RegistryBlockDefinition implements IBlockDefinition {
-
-        private final String id;
-
-        private RegistryBlockDefinition(final String id) {
-            this.id = id;
-        }
+    private record RegistryBlockDefinition(String id) implements IBlockDefinition {
 
         @Override
-        public String identifier() {
-            return this.id;
-        }
-
-        @Override
-        public Optional<Block> maybeBlock() {
-            final Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(this.id));
-            if (block == null) {
-                AELog.debug("Unable to resolve AE block definition {}", this.id);
-                return Optional.empty();
+            public String identifier() {
+                return this.id;
             }
-            return Optional.of(block);
-        }
 
-        @Override
-        public Optional<Item> maybeItem() {
-            return this.maybeBlock().map(Item::getItemFromBlock).filter(item -> item != Item.getItemById(0));
-        }
+            @Override
+            public Optional<Block> maybeBlock() {
+                final Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(this.id));
+                if (block == null) {
+                    AELog.debug("Unable to resolve AE block definition {}", this.id);
+                    return Optional.empty();
+                }
+                return Optional.of(block);
+            }
 
-        @Override
-        public Optional<ItemBlock> maybeItemBlock() {
-            return this.maybeItem().filter(ItemBlock.class::isInstance).map(ItemBlock.class::cast);
-        }
+            @Override
+            public Optional<Item> maybeItem() {
+                return this.maybeBlock().map(Item::getItemFromBlock).filter(item -> item != Item.getItemById(0));
+            }
 
-        @Override
-        public Optional<ItemStack> maybeStack(final int stackSize) {
-            return this.maybeItem().map(item -> new ItemStack(item, stackSize));
-        }
+            @Override
+            public Optional<ItemBlock> maybeItemBlock() {
+                return this.maybeItem().filter(ItemBlock.class::isInstance).map(ItemBlock.class::cast);
+            }
 
-        @Override
-        public boolean isEnabled() {
-            return this.maybeBlock().isPresent();
+            @Override
+            public Optional<ItemStack> maybeStack(final int stackSize) {
+                return this.maybeItem().map(item -> new ItemStack(item, stackSize));
+            }
+
+            @Override
+            public boolean isEnabled() {
+                return this.maybeBlock().isPresent();
+            }
         }
-    }
 }

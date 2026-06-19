@@ -38,7 +38,7 @@ public interface IAEStack<T extends IAEStack<T>> {
 
     boolean fuzzyComparison(T stack, FuzzyMode mode);
 
-    void writeToPacket(ByteBuf data) throws IOException;
+    void writeToPacket(ByteBuf data);
 
     void writeToNBT(NBTTagCompound data);
 

@@ -76,7 +76,6 @@ public enum AEColor {
 
     public int getVariantByTintIndex(final int tintIndex) {
         return switch (tintIndex) {
-            case 0 -> -1;
             case TINTINDEX_DARK -> this.blackVariant;
             case TINTINDEX_MEDIUM -> this.mediumVariant;
             case TINTINDEX_BRIGHT -> this.whiteVariant;

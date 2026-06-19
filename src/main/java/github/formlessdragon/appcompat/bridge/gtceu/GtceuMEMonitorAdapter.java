@@ -9,8 +9,6 @@ import appeng.api.storage.IMEMonitor;
 import appeng.api.storage.IStorageChannel;
 import appeng.api.storage.channels.IFluidStorageChannel;
 import appeng.api.storage.channels.IItemStorageChannel;
-import appeng.api.storage.data.IAEFluidStack;
-import appeng.api.storage.data.IAEItemStack;
 import appeng.api.storage.data.IAEStack;
 import appeng.api.storage.data.IItemList;
 import appeng.fluids.util.FluidList;
@@ -21,14 +19,12 @@ public final class GtceuMEMonitorAdapter<T extends IAEStack<T>> implements IMEMo
 
     private final IStorageChannel<T> channel;
     private final IStorageService storageService;
-    private final IEnergyService energyService;
 
     public GtceuMEMonitorAdapter(final IStorageChannel<T> channel,
                                  final IStorageService storageService,
                                  final IEnergyService energyService) {
         this.channel = channel;
         this.storageService = storageService;
-        this.energyService = energyService;
     }
 
     @Override

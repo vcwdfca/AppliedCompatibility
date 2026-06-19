@@ -60,7 +60,6 @@ public abstract class MixinMEGasInputBus extends MEGasBus implements IGridTickab
             return TickRateModulation.SLOWER;
         }
 
-        final IActionHost host = hostTile;
         final GasInventory config = getConfig();
         synchronized (tanks) {
             inTick = true;
@@ -75,14 +74,14 @@ public abstract class MixinMEGasInputBus extends MEGasBus implements IGridTickab
 
                     if (cfgStack == null) {
                         if (invStack != null) {
-                            tanks.setGas(slot, AppCompatGasBridge.insert(grid, host, invStack));
+                            tanks.setGas(slot, AppCompatGasBridge.insert(grid, hostTile, invStack));
                         }
                         continue;
                     }
 
                     if (!appcompat$sameGas(cfgStack, invStack)) {
                         if (invStack != null) {
-                            final GasStack left = AppCompatGasBridge.insert(grid, host, invStack);
+                            final GasStack left = AppCompatGasBridge.insert(grid, hostTile, invStack);
                             if (left != null) {
                                 tanks.setGas(slot, left);
                                 continue;
@@ -90,7 +89,7 @@ public abstract class MixinMEGasInputBus extends MEGasBus implements IGridTickab
                         }
                         final GasStack request = cfgStack.copy();
                         request.amount = capacity;
-                        final GasStack extracted = AppCompatGasBridge.extract(grid, host, request);
+                        final GasStack extracted = AppCompatGasBridge.extract(grid, hostTile, request);
                         tanks.setGas(slot, extracted);
                         if (extracted != null) {
                             successAtLeastOnce = true;
@@ -105,7 +104,7 @@ public abstract class MixinMEGasInputBus extends MEGasBus implements IGridTickab
                     if (capacity > invStack.amount) {
                         final GasStack request = invStack.copy();
                         request.amount = capacity - invStack.amount;
-                        final GasStack extracted = AppCompatGasBridge.extract(grid, host, request);
+                        final GasStack extracted = AppCompatGasBridge.extract(grid, hostTile, request);
                         if (extracted != null) {
                             final GasStack updated = invStack.copy();
                             updated.amount += extracted.amount;
@@ -118,7 +117,7 @@ public abstract class MixinMEGasInputBus extends MEGasBus implements IGridTickab
                     final int countToExtract = invStack.amount - capacity;
                     final GasStack request = invStack.copy();
                     request.amount = countToExtract;
-                    final GasStack left = AppCompatGasBridge.insert(grid, host, request);
+                    final GasStack left = AppCompatGasBridge.insert(grid, hostTile, request);
                     final GasStack updated = invStack.copy();
                     updated.amount = left == null ? capacity : capacity + left.amount;
                     tanks.setGas(slot, updated.amount <= 0 ? null : updated);

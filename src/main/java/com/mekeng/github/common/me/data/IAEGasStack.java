@@ -48,7 +48,7 @@ public interface IAEGasStack extends IAEStack<IAEGasStack> {
 
     boolean fuzzyComparison(IAEGasStack other, FuzzyMode mode);
 
-    void writeToPacket(ByteBuf data) throws IOException;
+    void writeToPacket(ByteBuf data);
 
     IAEGasStack empty();
 

@@ -10,10 +10,6 @@ public class SlotRestrictedInput extends AppEngSlot {
         super(inv, idx, x, y);
     }
 
-    public Slot setNotDraggable() {
-        return this;
-    }
-
     public enum PlacableItemType {
         STORAGE_CELLS,
         ORE,

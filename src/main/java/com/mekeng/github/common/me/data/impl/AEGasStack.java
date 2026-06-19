@@ -161,7 +161,7 @@ public final class AEGasStack implements IAEGasStack, Comparable<AEGasStack> {
     }
 
     @Override
-    public void writeToPacket(final ByteBuf data) throws IOException {
+    public void writeToPacket(final ByteBuf data) {
         data.writeInt(GasRegistry.getGasID(this.gas));
         data.writeLong(this.amount);
         data.writeLong(this.countRequestable);
