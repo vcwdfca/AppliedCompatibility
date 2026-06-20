@@ -3,12 +3,12 @@ package github.formlessdragon.appcompat.proxy;
 import github.formlessdragon.appcompat.AppCompatConfig;
 import github.formlessdragon.appcompat.bridge.mmce.AppCompatMMCEHooks;
 import github.formlessdragon.appcompat.bridge.mmce.mekeng.AppCompatMekEngInitHooks;
-import github.formlessdragon.appcompat.bridge.packagedauto.mekeng.PackagedMekEngHooks;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import static github.formlessdragon.appcompat.AppCompatMixinDecisions.*;
+import static github.formlessdragon.appcompat.AppCompatMixinDecisions.mekengLoaded;
+import static github.formlessdragon.appcompat.AppCompatMixinDecisions.mmceLoaded;
 
 public class CommonProxy {
 
@@ -20,7 +20,6 @@ public class CommonProxy {
             if (mmceLoaded) AppCompatMMCEHooks.init();
             if (mmceLoaded && mekengLoaded) AppCompatMekEngInitHooks.init();
         }
-        if ((AppCompatConfig.enablePackagedAuto && packagedautoLoaded || AppCompatConfig.enablePackagingProvider && packagingproviderLoaded) && mekengLoaded) PackagedMekEngHooks.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

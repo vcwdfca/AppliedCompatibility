@@ -19,7 +19,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 
-import java.util.Arrays;
 import java.util.EnumSet;
 
 public class AENetworkProxy {
@@ -40,7 +39,11 @@ public class AENetworkProxy {
     }
 
     public void setFlags(final GridFlags... flags) {
-        this.managedHost.node().setFlags(Arrays.stream(flags).map(this::toNewFlag).toArray(ae2.api.networking.GridFlags[]::new));
+        final ae2.api.networking.GridFlags[] newFlags = new ae2.api.networking.GridFlags[flags.length];
+        for (int i = 0; i < flags.length; i++) {
+            newFlags[i] = this.toNewFlag(flags[i]);
+        }
+        this.managedHost.node().setFlags(newFlags);
     }
 
     public void setValidSides(final EnumSet<EnumFacing> sides) {

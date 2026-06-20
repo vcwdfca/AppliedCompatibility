@@ -1,8 +1,8 @@
 package github.formlessdragon.appcompat.bridge.gtceu;
 
-import ae2.api.stacks.AEKey;
 import ae2.api.networking.energy.IEnergyService;
 import ae2.api.networking.storage.IStorageService;
+import ae2.api.stacks.AEKey;
 import appeng.api.config.Actionable;
 import appeng.api.networking.security.IActionSource;
 import appeng.api.storage.IMEMonitor;
@@ -80,6 +80,7 @@ public final class GtceuMEMonitorAdapter<T extends IAEStack<T>> implements IMEMo
         }
     }
 
+    @SuppressWarnings("unchecked")
     private IItemList<T> createList() {
         if (this.channel instanceof IItemStorageChannel) {
             return (IItemList<T>) new ItemList();
@@ -90,6 +91,7 @@ public final class GtceuMEMonitorAdapter<T extends IAEStack<T>> implements IMEMo
         throw new IllegalArgumentException("Unsupported old AE storage channel " + this.channel.getClass().getName());
     }
 
+    @SuppressWarnings("unchecked")
     private T castOldStack(final IAEStack<?> stack) {
         return (T) stack;
     }

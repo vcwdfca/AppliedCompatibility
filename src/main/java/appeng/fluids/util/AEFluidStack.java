@@ -1,6 +1,7 @@
 package appeng.fluids.util;
 
 import ae2.api.stacks.AEFluidKey;
+import ae2.api.stacks.AEKey;
 import appeng.api.AEApi;
 import appeng.api.config.FuzzyMode;
 import appeng.api.storage.IStorageChannel;
@@ -32,6 +33,13 @@ public class AEFluidStack implements IAEFluidStack {
             return null;
         }
         return new AEFluidStack(key, amount);
+    }
+
+    public static AEFluidStack fromGenericKey(final AEKey key, final long amount) {
+        if (!(key instanceof AEFluidKey fluidKey)) {
+            return null;
+        }
+        return fromKey(fluidKey, amount);
     }
 
     public static AEFluidStack fromFluidStack(final FluidStack stack) {

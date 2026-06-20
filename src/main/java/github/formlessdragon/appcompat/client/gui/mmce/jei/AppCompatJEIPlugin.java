@@ -1,5 +1,6 @@
 package github.formlessdragon.appcompat.client.gui.mmce.jei;
 
+import github.formlessdragon.appcompat.AppCompatMixinDecisions;
 import github.formlessdragon.appcompat.client.gui.mmce.GuiMEItemInputBus;
 import hellfirepvp.modularmachinery.common.machine.DynamicMachine;
 import hellfirepvp.modularmachinery.common.machine.MachineRegistry;
@@ -13,11 +14,13 @@ public class AppCompatJEIPlugin implements IModPlugin {
 
     @Override
     public void register(final @NonNull IModRegistry registry) {
-        for (final DynamicMachine machine : MachineRegistry.getRegistry()) {
-            registry.getRecipeTransferRegistry().addRecipeTransferHandler(
-                new AppCompatInputRecipeTransferHandler(),
-                "modularmachinery.recipes." + machine.getRegistryName().getPath());
+        if (AppCompatMixinDecisions.mmceLoaded) {
+            for (final DynamicMachine machine : MachineRegistry.getRegistry()) {
+                registry.getRecipeTransferRegistry().addRecipeTransferHandler(
+                    new AppCompatInputRecipeTransferHandler(),
+                    "modularmachinery.recipes." + machine.getRegistryName().getPath());
+            }
+            registry.addGhostIngredientHandler(GuiMEItemInputBus.class, new AppCompatInputGhostHandler());
         }
-        registry.addGhostIngredientHandler(GuiMEItemInputBus.class, new AppCompatInputGhostHandler());
     }
 }

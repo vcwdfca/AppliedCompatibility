@@ -2,28 +2,35 @@ package github.formlessdragon.appcompat.bridge.gtceu;
 
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridCache;
+import appeng.api.networking.energy.IEnergyGrid;
 import appeng.api.networking.events.MENetworkEvent;
-import github.formlessdragon.appcompat.bridge.oldae.OldAeGridAdapter;
+import appeng.api.networking.storage.IStorageGrid;
 
 public final class GtceuGridAdapter implements IGrid {
 
-    private final OldAeGridAdapter delegate;
+    private final ae2.api.networking.IGrid grid;
 
     public GtceuGridAdapter(final ae2.api.networking.IGrid grid) {
-        this.delegate = new OldAeGridAdapter(grid);
+        this.grid = grid;
     }
 
     @Override
     public MENetworkEvent postEvent(final MENetworkEvent ev) {
-        return this.delegate.postEvent(ev);
+        return ev;
     }
 
     @Override
     public IGridCache getCache(final Class<? extends IGridCache> iface) {
-        return this.delegate.getCache(iface);
+        if (iface == IStorageGrid.class) {
+            return new GtceuStorageGridAdapter(this.grid.getStorageService(), this.grid.getEnergyService());
+        }
+        if (iface == IEnergyGrid.class) {
+            return new GtceuEnergyGridAdapter(this.grid.getEnergyService());
+        }
+        throw new IllegalArgumentException("Unsupported GTCEu old AE grid cache " + iface.getName());
     }
 
     public ae2.api.networking.IGrid unwrap() {
-        return this.delegate.unwrap();
+        return this.grid;
     }
 }

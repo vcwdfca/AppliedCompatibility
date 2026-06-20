@@ -110,7 +110,7 @@ unimined.minecraft {
         if (propertyBool('use_access_transformer')) {
             accessTransformer "${rootProject.projectDir}/src/main/resources/${propertyString('access_transformer_locations')}"
         }
-        loader "0.5.6-alpha"
+        loader "0.5.14-alpha"
         runs.auth.username = minecraft_username
         runs.all {
             systemProperty("crl.dev.mixin", "${mod_id}.default.mixin.json,${mod_id}.mod.mixin.json")
@@ -120,6 +120,7 @@ unimined.minecraft {
             if (extraArgs != null && !extraArgs.trim().isEmpty()) {
                 jvmArgs += extraArgs.split { "\\s+" }.toList()
             }
+            systemProperty('mixin.debug.export', 'true')
             if (propertyBool('enable_foundation_debug')) {
                 systemProperty("foundation.dump", "true")
                 systemProperty("foundation.verbose", "true")

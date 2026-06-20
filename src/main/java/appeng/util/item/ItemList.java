@@ -3,17 +3,17 @@ package appeng.util.item;
 import appeng.api.config.FuzzyMode;
 import appeng.api.storage.data.IAEItemStack;
 import appeng.api.storage.data.IItemList;
+import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.jspecify.annotations.NonNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ItemList implements IItemList<IAEItemStack> {
 
-    private final Map<IAEItemStack, IAEItemStack> records = new LinkedHashMap<>();
+    private final Map<IAEItemStack, IAEItemStack> records = new Object2ObjectLinkedOpenHashMap<>();
 
     @Override
     public void addStorage(final IAEItemStack option) {
@@ -64,7 +64,7 @@ public class ItemList implements IItemList<IAEItemStack> {
 
     @Override
     public Collection<IAEItemStack> findFuzzy(final IAEItemStack filter, final FuzzyMode fuzzy) {
-        final ArrayList<IAEItemStack> result = new ArrayList<>();
+        final ObjectArrayList<IAEItemStack> result = new ObjectArrayList<>();
         if (filter == null) {
             return result;
         }
@@ -90,6 +90,12 @@ public class ItemList implements IItemList<IAEItemStack> {
         if (option == null) {
             throw new IllegalArgumentException("Cannot add a null item stack");
         }
-        return this.records.computeIfAbsent(option, IAEItemStack::empty);
+        final IAEItemStack existing = this.records.get(option);
+        if (existing != null) {
+            return existing;
+        }
+        final IAEItemStack empty = option.empty();
+        this.records.put(option, empty);
+        return empty;
     }
 }

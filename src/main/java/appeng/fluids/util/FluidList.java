@@ -3,17 +3,17 @@ package appeng.fluids.util;
 import appeng.api.config.FuzzyMode;
 import appeng.api.storage.data.IAEFluidStack;
 import appeng.api.storage.data.IItemList;
+import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.jspecify.annotations.NonNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FluidList implements IItemList<IAEFluidStack> {
 
-    private final Map<IAEFluidStack, IAEFluidStack> records = new LinkedHashMap<>();
+    private final Map<IAEFluidStack, IAEFluidStack> records = new Object2ObjectLinkedOpenHashMap<>();
 
     @Override
     public void addStorage(final IAEFluidStack option) {
@@ -64,7 +64,7 @@ public class FluidList implements IItemList<IAEFluidStack> {
 
     @Override
     public Collection<IAEFluidStack> findFuzzy(final IAEFluidStack filter, final FuzzyMode fuzzy) {
-        final ArrayList<IAEFluidStack> result = new ArrayList<>();
+        final ObjectArrayList<IAEFluidStack> result = new ObjectArrayList<>();
         if (filter == null) {
             return result;
         }
@@ -90,6 +90,12 @@ public class FluidList implements IItemList<IAEFluidStack> {
         if (option == null) {
             throw new IllegalArgumentException("Cannot add a null fluid stack");
         }
-        return this.records.computeIfAbsent(option, IAEFluidStack::empty);
+        final IAEFluidStack existing = this.records.get(option);
+        if (existing != null) {
+            return existing;
+        }
+        final IAEFluidStack empty = option.empty();
+        this.records.put(option, empty);
+        return empty;
     }
 }

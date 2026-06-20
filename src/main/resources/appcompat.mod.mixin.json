@@ -3,30 +3,47 @@
   "minVersion": "0.8",
   "package": "github.formlessdragon.appcompat.mixins",
   "compatibilityLevel": "JAVA_25",
-  "plugin" : "github.formlessdragon.appcompat.MixinConfigPlugin",
+  "plugin": "github.formlessdragon.appcompat.MixinConfigPlugin",
   "target": "@env(MOD)",
   "mixinextras": {
     "minVersion": "0.5.3"
   },
   "mixins": [
+    "gtceu.MixinMetaTileEntityHolder",
+    "gtceu.MixinMods",
     "mmce.MixinCommonProxy",
     "mmce.MixinItemBlockMEMachineComponent",
-    "mmce.top.MixinModIntegrationTOP",
-    "mmce.top.MixinMachineryHatchInfoProvider",
     "mmce.MixinMEFluidInputBus",
     "mmce.MixinMEFluidOutputBus",
-    "mmce.mekeng.MixinCommonProxy",
-    "mmce.mekeng.MixinMEGasInputBus",
-    "mmce.mekeng.MixinMEGasOutputBus",
     "mmce.MixinMEItemInputBus",
     "mmce.MixinMEItemOutputBus",
     "mmce.MixinMEMachineComponent",
     "mmce.MixinMEPatternProvider",
-    "gtceu.MixinMods",
-    "gtceu.MixinMetaTileEntityHolder"
+    "mmce.mekeng.MixinCommonProxy",
+    "mmce.mekeng.MixinMEGasInputBus",
+    "mmce.mekeng.MixinMEGasOutputBus",
+    "mmce.top.MixinMachineryHatchInfoProvider",
+    "mmce.top.MixinModIntegrationTOP",
+    "packagedauto.MixinTileBase",
+    "packagedauto.MixinTileCrafter",
+    "packagedauto.MixinTileCraftingProxy",
+    "packagedauto.MixinTileDistributor",
+    "packagedauto.MixinTilePackager",
+    "packagedauto.MixinTilePackagerExtension",
+    "packagedauto.MixinTileUnpackager",
+    "packagingprovider.MixinTilePackagingProvider"
   ],
   "client": [
     "mmce.MixinClientProxy",
-    "mmce.mekeng.MixinClientProxy"
+    "mmce.mekeng.MixinClientProxy",
+    "packagedauto.MixinGuiAmountSpecifying",
+    "packagedauto.MixinGuiContainerTileBase",
+    "packagedauto.MixinGuiEncoder",
+    "packagedauto.MixinGuiItemAmountSpecifying",
+    "packagedauto.MixinItemPackage",
+    "packagedauto.MixinItemRecipeHolder",
+    "packagedauto.jei.MixinEncoderGhostIngredientHandler",
+    "packagedauto.jei.MixinRecipeTypeProcessing",
+    "packagedauto.jei.MixinRecipeTypeProcessingPositioned"
   ]
 }

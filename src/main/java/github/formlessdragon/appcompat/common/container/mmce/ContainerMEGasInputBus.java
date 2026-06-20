@@ -26,6 +26,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class ContainerMEGasInputBus extends AEBaseContainer {
 
@@ -134,7 +135,7 @@ public class ContainerMEGasInputBus extends AEBaseContainer {
         }
         final GasStack gasStack = new GasStack(gas, 1);
         config.setGas(slot, gasStack);
-        this.configInventory.setStack(slot, new GenericStack(AEGasKey.of(gasStack), 1));
+        this.configInventory.setStack(slot, new GenericStack(Objects.requireNonNull(AEGasKey.of(gasStack)), 1));
     }
 
     @Override

@@ -23,6 +23,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 
 import java.util.Collections;
+import java.util.Objects;
 
 public class ContainerMEFluidInputBus extends AEBaseContainer {
 
@@ -108,7 +109,7 @@ public class ContainerMEFluidInputBus extends AEBaseContainer {
         }
         final FluidStack fluidStack = new FluidStack(fluid, 1000);
         config.setFluidInSlot(slot, AEFluidStack.fromFluidStack(fluidStack));
-        this.configInventory.setStack(slot, new GenericStack(AEFluidKey.of(fluid), 1));
+        this.configInventory.setStack(slot, new GenericStack(Objects.requireNonNull(AEFluidKey.of(fluid)), 1));
     }
 
     @Override
