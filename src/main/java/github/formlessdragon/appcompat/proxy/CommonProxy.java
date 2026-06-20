@@ -1,6 +1,7 @@
 package github.formlessdragon.appcompat.proxy;
 
 import github.formlessdragon.appcompat.AppCompatConfig;
+import github.formlessdragon.appcompat.bridge.ae.AppCompatAEHooks;
 import github.formlessdragon.appcompat.bridge.mmce.AppCompatMMCEHooks;
 import github.formlessdragon.appcompat.bridge.mmce.mekeng.AppCompatMekEngInitHooks;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -16,6 +17,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
+        AppCompatAEHooks.init();
         if (AppCompatConfig.enableMMCE) {
             if (mmceLoaded) AppCompatMMCEHooks.init();
             if (mmceLoaded && mekengLoaded) AppCompatMekEngInitHooks.init();
