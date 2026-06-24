@@ -23,7 +23,6 @@
     "mmce.mekeng.MixinMEGasInputBus",
     "mmce.mekeng.MixinMEGasOutputBus",
     "mmce.top.MixinMachineryHatchInfoProvider",
-    "mmce.top.MixinModIntegrationTOP",
     "packagedauto.MixinTileBase",
     "packagedauto.MixinTileCrafter",
     "packagedauto.MixinTileCraftingProxy",
